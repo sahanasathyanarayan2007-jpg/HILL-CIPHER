@@ -29,7 +29,50 @@ STEP-4: Multiply the two matrices to obtain the cipher text of length three.
 STEP-5: Combine all these groups to get the complete cipher text.
 
 ## PROGRAM 
+```
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+
+int main() {
+    char text[100];
+    int key[2][2] = {{3, 3}, {2, 5}};
+    int a, b, c, d, i;
+
+    printf("Enter plaintext: ");
+    scanf("%99s", text);
+
+    for (i = 0; text[i] != '\0'; i++)
+        text[i] = toupper(text[i]);
+
+    int len = strlen(text);
+
+    if (len % 2 != 0) {
+        text[len] = 'X';
+        text[len + 1] = '\0';
+        len++;
+    }
+
+    printf("Encrypted text: ");
+
+    for (i = 0; i < len; i += 2) {
+        a = text[i] - 'A';
+        b = text[i + 1] - 'A';
+
+        c = (key[0][0] * a + key[0][1] * b) % 26;
+        d = (key[1][0] * a + key[1][1] * b) % 26;
+
+        printf("%c%c", c + 'A', d + 'A');
+    }
+
+    printf("\n");
+    return 0;
+}
+```
 
 ## OUTPUT
+<img width="1600" height="749" alt="WhatsApp Image 2026-10-28 at 9 17 46 AM" src="https://github.com/user-attachments/assets/2856142a-435d-4475-a5bb-be970f4226df" />
+
 
 ## RESULT
+implement the hill cipher substitution techniques was done.
